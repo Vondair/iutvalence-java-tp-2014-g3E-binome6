@@ -46,15 +46,21 @@ public class Puissance4 {
     	for (i = 0; i < NB_LIGNES; i++) {
     		for (j = 0; j < NB_COLONNES; j++) {
     			if (this.grille[i][j] == CASE_VIDE)
-    				System.out.println(CASE_VIDE);
+    				System.out.print(CASE_VIDE);
+    				if (j == NB_COLONNES)
+    					System.out.println("");
     			else if (this.grille[i][j] == PION_J1)
-    				System.out.println(PION_J1);
+    				System.out.print(PION_J1);
+    				if (j == NB_COLONNES)
+    					System.out.println("");
     			else if (this.grille[i][j] == PION_J2)
-    				System.out.println(PION_J2);
+    				System.out.print(PION_J2);
+    				if (j == NB_COLONNES)
+    					System.out.println("");
     			testNbCases++;
     		}
     	}
-    	System.out.println(testNbCases);
+    	System.out.print(testNbCases);
     }
 
     /** Méthode permettant d'obtenir une colonne parmi celles de la grille */
