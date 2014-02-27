@@ -29,6 +29,9 @@ public class Puissance4 {
 	/** Nombre de colonnes */
 	public static final int NB_COLONNES = 7;
 
+	/** Constante représentant la colonne sélectionnée par l'utilisateur. */
+	public int COLONNE_CHOISIE = 4;
+
 	/**
 	 * Constructeur initialisant une grille vide et retenant le nom des joueurs.
 	 */
@@ -58,29 +61,24 @@ public class Puissance4 {
 		}
 	}
 
-	/** Méthode permettant d'obtenir une colonne parmi celles de la grille */
-	public void obtenirColonne() {
-		int i;
-		for (i = 0; i < NB_COLONNES; i++) {
-
-		}
-	}
-
 	/**
 	 * Méthode permettant au joueur courant de choisir la colonne dans laquelle
 	 * il veut placer son pion.
 	 */
 	public void choisirColonne() {
-		int i;
+		System.out.println(COLONNE_CHOISIE);
 	}
 
 	/** Méthode permettant l'insertion d'un pion dans la grille */
 	public void insérerPion() {
-
+		// int i;
+		// while(i == COLONNE_CHOISIE)
 	}
 
 	/** Méthode permettant de lancer le jeu */
 	public void jouer() {
 		this.afficher();
+		this.choisirColonne();
+
 	}
 }
