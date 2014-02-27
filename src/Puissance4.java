@@ -1,24 +1,24 @@
 public class Puissance4 {
-	/** Représente la grille de jeu. */
-	public int[][] grille;
+	/** Joueur1. */
+	public Joueur J1;
 
-	/** Nom du joueur 1. */
-	public final String J1;
-
-	/** Nom du joueur 2. */
-	public final String J2;
+	/** Joueur2. */
+	public Joueur J2;
 
 	/** Joueur courant. */
-	public String joueurCourant;
+	public Joueur joueurCourant;
 
 	/** Joueur suivant */
-	public String joueurSuivant;
+	public Joueur joueurSuivant;
 
 	/** Pion du joueur 1. */
 	public static final int PION_J1 = 1;
 
 	/** Pion du joueur 2. */
 	public static final int PION_J2 = 2;
+
+	/** Représente la grille de jeu. */
+	public int[][] grille;
 
 	/** Case vide. */
 	public static final int CASE_VIDE = 0;
@@ -37,9 +37,9 @@ public class Puissance4 {
 	 */
 	public Puissance4(String joueur1, String joueur2) {
 		this.grille = new int[NB_LIGNES][NB_COLONNES];
-		this.J1 = joueur1;
-		this.J2 = joueur2;
-		this.joueurSuivant = joueur1;
+		this.J1 = new Joueur(joueur1, PION_J1);
+		this.J2 = new Joueur(joueur2, PION_J2);
+		this.joueurSuivant = this.J1;
 	}
 
 	/** Méthode permettant d'afficher l'état des cases de la grille. */
@@ -71,14 +71,22 @@ public class Puissance4 {
 
 	/** Méthode permettant l'insertion d'un pion dans la grille */
 	public void insérerPion() {
-		// int i;
-		// while(i == COLONNE_CHOISIE)
+		int i;
+		int j;
+		for (i = 0; i < NB_COLONNES; i++) {
+			while (i == COLONNE_CHOISIE) {
+				for (j = NB_LIGNES - 1; j >= 0; j--) {
+					if (grille[i][j] == CASE_VIDE) {
+						grille[i][j] = this.joueurCourant.obtenirPion();
+					}
+				}
+			}
+		}
 	}
 
 	/** Méthode permettant de lancer le jeu */
 	public void jouer() {
 		this.afficher();
-		this.choisirColonne();
 
 	}
 }
