@@ -1,8 +1,10 @@
+/* TODO Javadoc. */
+
 public class Joueur {
-	/** Nom du joueur */
+	/** Nom du joueur. */
 	public final String nom;
 
-	/** Pion du joueur */
+	/** Pion du joueur. */
 	public final int pion;
 
 	public Joueur(String nom, int pion) {
