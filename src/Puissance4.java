@@ -1,3 +1,5 @@
+/* TODO Javadoc. */
+
 public class Puissance4 {
 	/** Joueur1. */
 	public Joueur J1;
@@ -8,6 +10,7 @@ public class Puissance4 {
 	/** Joueur courant. */
 	public Joueur joueurCourant;
 
+    /* TODO Pourquoi avoir le courant ET le suivant ? */
 	/** Joueur suivant */
 	public Joueur joueurSuivant;
 
@@ -42,6 +45,7 @@ public class Puissance4 {
 		this.joueurSuivant = this.J1;
 	}
 
+    /* TODO Méthode très mal rédigée, à reprendre. */
 	/** Méthode permettant d'afficher l'état des cases de la grille. */
 	public void afficher() {
 		int i;
@@ -69,7 +73,8 @@ public class Puissance4 {
 		System.out.println(COLONNE_CHOISIE);
 	}
 
-	/** Méthode permettant l'insertion d'un pion dans la grille */
+    /* TODO Méthode très mal rédigée, à reprendre. */
+    /** Méthode permettant l'insertion d'un pion dans la grille */
 	public void insérerPion() {
 		int i;
 		int j;
