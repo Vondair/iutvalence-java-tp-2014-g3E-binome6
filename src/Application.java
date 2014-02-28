@@ -1,7 +1,7 @@
 /**
  * "Launcher" du jeu.
  * 
- * @author carriean-cottenom
+ * @author Antoine C, Marine C.
  */
 public class Application {
 

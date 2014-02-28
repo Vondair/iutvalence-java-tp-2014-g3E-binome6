@@ -1,4 +1,9 @@
-/* TODO Javadoc. */
+/**
+ * Classe définissant ce qu'est un joueur.
+ * 
+ * @author Antoine C, Marine C.
+ *
+ */
 
 public class Joueur {
 	/** Nom du joueur. */

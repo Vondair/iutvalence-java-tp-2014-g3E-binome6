@@ -1,4 +1,9 @@
-/* TODO Javadoc. */
+/**
+ * Classe définissant le jeu puissance 4.
+ * 
+ * @author Antoine C, Marine C.
+ *
+ */
 
 public class Puissance4 {
 	/** Joueur1. */
@@ -9,10 +14,6 @@ public class Puissance4 {
 
 	/** Joueur courant. */
 	public Joueur joueurCourant;
-
-    /* TODO Pourquoi avoir le courant ET le suivant ? */
-	/** Joueur suivant */
-	public Joueur joueurSuivant;
 
 	/** Pion du joueur 1. */
 	public static final int PION_J1 = 1;
@@ -42,7 +43,7 @@ public class Puissance4 {
 		this.grille = new int[NB_LIGNES][NB_COLONNES];
 		this.J1 = new Joueur(joueur1, PION_J1);
 		this.J2 = new Joueur(joueur2, PION_J2);
-		this.joueurSuivant = this.J1;
+		this.joueurCourant = this.J1;
 	}
 
     /* TODO Méthode très mal rédigée, à reprendre. */
@@ -73,18 +74,13 @@ public class Puissance4 {
 		System.out.println(COLONNE_CHOISIE);
 	}
 
-    /* TODO Méthode très mal rédigée, à reprendre. */
     /** Méthode permettant l'insertion d'un pion dans la grille */
 	public void insérerPion() {
-		int i;
+		int i = COLONNE_CHOISIE;
 		int j;
-		for (i = 0; i < NB_COLONNES; i++) {
-			while (i == COLONNE_CHOISIE) {
-				for (j = NB_LIGNES - 1; j >= 0; j--) {
-					if (grille[i][j] == CASE_VIDE) {
-						grille[i][j] = this.joueurCourant.obtenirPion();
-					}
-				}
+		for (j = NB_LIGNES - 1; j >= 0; j--) {
+			if (grille[i][j] == CASE_VIDE) {
+				grille[i][j] = this.joueurCourant.obtenirPion();
 			}
 		}
 	}
