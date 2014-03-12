@@ -10,14 +10,14 @@ public class Joueur {
 	public final String nom;
 
 	/** Pion du joueur. */
-	public final int pion;
+	public final Pion pion;
 
-	public Joueur(String nom, int pion) {
+	public Joueur(String nom, Pion pionJ1) {
 		this.nom = nom;
-		this.pion = pion;
+		this.pion = pionJ1;
 	}
 
-	public int obtenirPion() {
+	public Pion obtenirPion() {
 		return this.pion;
 	}
 }
