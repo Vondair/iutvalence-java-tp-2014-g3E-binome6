@@ -1,10 +1,11 @@
+/* TODO Package. */
+
 /**
- * Classe définissant ce qu'est un joueur.
+ * Implémentation d'un joueur lui associant un nom et un pion.
  * 
  * @author Antoine C, Marine C.
- *
+ * @version TODO
  */
-
 public class Joueur {
 	/** Nom du joueur. */
 	public final String nom;
