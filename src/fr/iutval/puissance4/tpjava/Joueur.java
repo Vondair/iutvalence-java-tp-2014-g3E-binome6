@@ -1,10 +1,10 @@
-/* TODO Package. */
+package fr.iutval.puissance4.tpjava;
 
 /**
  * Implémentation d'un joueur lui associant un nom et un pion.
  * 
  * @author Antoine C, Marine C.
- * @version TODO
+ * @version 1.0
  */
 public class Joueur {
 	/** Nom du joueur. */

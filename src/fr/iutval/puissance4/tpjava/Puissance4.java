@@ -1,4 +1,4 @@
-/* TODO Package. */
+package fr.iutval.puissance4.tpjava;
 
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Jeu Puissance 4.
  * 
  * @author Antoine C, Marine C.
- * @version TODO
+ * @version 1.0
  */
 public class Puissance4 {
 	/** Nombre de lignes */
@@ -14,21 +14,18 @@ public class Puissance4 {
 	/** Nombre de colonnes */
 	public static final int NB_COLONNES = 7;
 
-	/* TODO Private ? Final ? */
     /** Premier joueur. */
-	public Joueur J1;
-	/* TODO Private ? Final ? */
+	private final Joueur J1;
+
     /** Second joueur. */
-	public Joueur J2;
-    /* TODO Private ? Final ? */
+	private final Joueur J2;
+
     /** Joueur courant. */
-	public Joueur joueurCourant;
-    /* TODO Private ? Final ? */
+	private final Joueur joueurCourant;
+
     /** Représente la grille de jeu. */
-	public Pion[][] grille;
-	/* TODO Ce n'est pas un attribut ! */
-    /** Colonne choisie par l'utilisateur. */
-	public int résultat;
+	private final Pion[][] grille;
+
 
 	/** Constructeur initialisant une grille vide et retenant le nom des joueurs. */
 	public Puissance4(String joueur1, String joueur2) {
@@ -38,6 +35,7 @@ public class Puissance4 {
 				this.grille[i][j] = Pion.CASE_VIDE;
             }
         }
+
 		this.J1 = new Joueur(joueur1, Pion.PION_J1);
 		this.J2 = new Joueur(joueur2, Pion.PION_J2);
 		this.joueurCourant = this.J1;
@@ -57,30 +55,40 @@ public class Puissance4 {
 	}
 
     /** Inserer un pion dans la grille. */
-	public void insérerPion(int colonne) {
-		/* TODO Pourquoi ne pas utiliser directement le paramètre ? */
-        int i = colonne;
-		/* TODO Pourquoi déclarer la variable ici ? */
-        int j;
-		for (j = Puissance4.NB_LIGNES - 1; j >= 0; j--) {
-			if (grille[i][j] == Pion.CASE_VIDE) {
-				grille[i][j] = this.joueurCourant.obtenirPion();
-				break;
+	public boolean insérerPion(int colonneChoisie) {
+		for (int j = Puissance4.NB_LIGNES - 1; j >= 0; j--) {
+			if (grille[j][colonneChoisie] == Pion.CASE_VIDE) {
+				grille[j][colonneChoisie] = this.joueurCourant.obtenirPion();
+				return true;
+			}
+			if (j == 0) {
+				return false;
 			}
 		}
+		return false;
 	}
 	
 	/** Lancer le jeu. */
 	public void jouer() {
+		int colonneChoisie;
 		this.afficher();
-		Scanner sc = new Scanner(System.in);
-		résultat=sc.nextInt();
-		if ((résultat >= 0) && (résultat <= 6)) {
-            this.insérerPion(résultat);
+		while (true) {
+			Scanner sc = new Scanner(System.in);
+		colonneChoisie=sc.nextInt();
+		if ((colonneChoisie > 0) && (colonneChoisie <= 7)) {
+            if (!this.insérerPion(colonneChoisie-1)) {
+            	System.err.println("Colonne pleine");
+            }
+            else {
+            	// XXX Vérification de victoire
+            	// XXX Changement de joueur
+            }
+            
         }
         else {
             System.out.println("Valeur incorrecte.");
         }
 		this.afficher();
+		}
 	}
 }

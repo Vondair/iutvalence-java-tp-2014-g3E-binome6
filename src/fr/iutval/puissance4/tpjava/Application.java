@@ -1,10 +1,11 @@
-/* TODO Package. */
+package fr.iutval.puissance4.tpjava;
+
 
 /**
  * "Launcher" du jeu.
  * 
  * @author Antoine C, Marine C.
- * @version TODO
+ * @version 1.0
  */
 public class Application {
 	/** Méthode principale. */
