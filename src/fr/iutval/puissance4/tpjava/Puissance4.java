@@ -21,7 +21,7 @@ public class Puissance4 {
 	private final Joueur J2;
 
     /** Joueur courant. */
-	private final Joueur joueurCourant;
+	private Joueur joueurCourant;
 
     /** Représente la grille de jeu. */
 	private final Pion[][] grille;
@@ -68,6 +68,16 @@ public class Puissance4 {
 		return false;
 	}
 	
+	/** Changement de joueur.*/
+	public void changerJoueur (){
+		if (joueurCourant == J1) {
+			joueurCourant = J2;
+		}
+		else if (joueurCourant == J2) { 
+			joueurCourant = J1;
+		}
+	}
+	
 	/** Lancer le jeu. */
 	public void jouer() {
 		int colonneChoisie;
@@ -81,12 +91,15 @@ public class Puissance4 {
             }
             else {
             	// XXX Vérification de victoire
-            	// XXX Changement de joueur
+            	
+            	
+            	
+            changerJoueur();
             }
             
         }
         else {
-            System.out.println("Valeur incorrecte.");
+            System.err.println("Valeur incorrecte.");
         }
 		this.afficher();
 		}
