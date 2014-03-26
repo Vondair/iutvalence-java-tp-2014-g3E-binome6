@@ -25,8 +25,7 @@ public class Puissance4 {
 
     /** Grille de jeu. */
     private final Pion[][] grille;
-
-
+   
     /** Constructeur initialisant une grille vide et retenant le nom des joueurs. */
     public Puissance4(String joueur1, String joueur2) {
         this.grille = new Pion[Puissance4.NB_LIGNES][Puissance4.NB_COLONNES];
@@ -57,7 +56,7 @@ public class Puissance4 {
     /**
      * Inserer un pion dans la grille.
      *
-     * @return TODO
+     * @return boolean.
      */
 	public boolean insérerPion(int colonneChoisie) {
 		for (int j = Puissance4.NB_LIGNES - 1; j >= 0; j--) {
@@ -65,7 +64,10 @@ public class Puissance4 {
 				grille[j][colonneChoisie] = joueurCourant.obtenirPion();
 				return true;
 			}
-            /* TODO Expliquer ce cas particulier (parce qu'il est interessant pour la compréhension). */
+/**
+ * Méthode qui permet de déterminer si la case est vide ou occupée. Dans le cas où la case est occupée, on cherche quel joueur a posé son pion et on le renvoie.            
+ */
+			//Cas pour lequel la colonne est déjà remplie, mettre un pion supplémentaire est donc impossible.
 			if (j == 0) {
 				return false;
 			}
@@ -75,9 +77,25 @@ public class Puissance4 {
 	
 	/** Changement de joueur. */
 	public void joueurSuivant() {
-        /* TODO J'ai simplifié. Demandez en TP si vous ne comprenez pas. */
         joueurCourant = joueurCourant.equals(joueur1) ? joueur2 : joueur1;
 	}
+	
+	/** Victoire en colonne.*/
+	public boolean estVictoireEnColonne(int colonneChoisie) {
+		for (int i=0; i < NB_LIGNES; i++) {
+			if (this.grille[i][colonneChoisie] == joueurCourant.pion) {
+				return true;
+			}
+		return false;
+		}
+		return false;
+			
+	}
+	
+	
+	
+	
+	
 
     /** Lancer le jeu. */
     public void jouer() {
