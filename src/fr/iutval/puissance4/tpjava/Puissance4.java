@@ -58,21 +58,21 @@ public class Puissance4 {
      *
      * @return boolean.
      */
-	public boolean insérerPion(int colonneChoisie) {
+	public int insérerPion(int colonneChoisie) {
 		for (int j = Puissance4.NB_LIGNES - 1; j >= 0; j--) {
 			if (grille[j][colonneChoisie] == Pion.CASE_VIDE) {
 				grille[j][colonneChoisie] = joueurCourant.obtenirPion();
-				return true;
+				return j;
 			}
 /**
  * Méthode qui permet de déterminer si la case est vide ou occupée. Dans le cas où la case est occupée, on cherche quel joueur a posé son pion et on le renvoie.            
  */
 			//Cas pour lequel la colonne est déjà remplie, mettre un pion supplémentaire est donc impossible.
 			if (j == 0) {
-				return false;
+				return -1;
 			}
 		}
-		return false;
+		return -1;
 	}
 	
 	/** Changement de joueur. */
@@ -81,22 +81,34 @@ public class Puissance4 {
 	}
 	
 	/** Victoire en colonne.*/
-	public boolean estVictoireEnColonne(int colonneChoisie) {
-		for (int i=0; i < NB_LIGNES; i++) {
-			if (this.grille[i][colonneChoisie] == joueurCourant.pion) {
+	private boolean estVictoireEnColonne(int colonneChoisie) {
+		int casesConsecutives=0;
+		for(int i = 0; i < NB_LIGNES; i++) {
+			casesConsecutives = (this.grille[i][colonneChoisie] == joueurCourant.pion) ? casesConsecutives + 1 : 0;
+			if (casesConsecutives==4) {
 				return true;
 			}
-		return false;
 		}
 		return false;
-			
 	}
 	
+	/** Victoire en ligne.*/
+	private boolean estVictoireEnLigne(int ligneUtilisee) {
+		int casesConsecutives=0;
+		for(int i = 0; i < NB_COLONNES; i++) {
+			casesConsecutives = (this.grille[ligneUtilisee][i] == joueurCourant.pion) ? casesConsecutives + 1 : 0;
+			if (casesConsecutives==4) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
+	/** Victoire en diagonale.*/
+	private boolean estVictoireEnDiagonale() {
+		
+	}
 	
-	
-	
-
     /** Lancer le jeu. */
     public void jouer() {
         this.afficher();
@@ -104,8 +116,13 @@ public class Puissance4 {
             Scanner sc = new Scanner(System.in);
             int colonneChoisie = sc.nextInt();
             if ((colonneChoisie > 0) && (colonneChoisie <= 7)) {
-                if (this.insérerPion(colonneChoisie - 1)) {
-                    // TODO Vérification de victoire : nécessitera certainement (pour être plus propre) de passer la grille dans une classe dédiée.
+            	int ligneUtilisee = this.insérerPion(colonneChoisie - 1); 
+                if (ligneUtilisee != -1) {
+                	System.out.println(ligneUtilisee);
+                    if (estVictoireEnColonne(colonneChoisie - 1) || estVictoireEnLigne(ligneUtilisee) ) {
+                    	System.out.println("VICTOIRE");
+                    }
+                	// TODO Vérification de victoire : nécessitera certainement (pour être plus propre) de passer la grille dans une classe dédiée.
                     joueurSuivant();
                 }
                 else {
@@ -118,4 +135,6 @@ public class Puissance4 {
             this.afficher();
         }
     }
+
+
 }
