@@ -106,7 +106,12 @@ public class Puissance4 {
 	
 	/** Victoire en diagonale.*/
 	private boolean estVictoireEnDiagonale() {
+		for (int j=0; j<NB_LIGNES-1; j++) {
+			int casesConsecutives=0;
+			for (int i=0; i)
+		}
 		
+		return false;
 	}
 	
     /** Lancer le jeu. */
