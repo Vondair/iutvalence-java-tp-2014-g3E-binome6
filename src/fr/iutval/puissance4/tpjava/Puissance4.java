@@ -32,9 +32,12 @@ public class Puissance4 {
         for (int i = 0; i < Puissance4.NB_LIGNES; i++) {
             for (int j = 0; j < Puissance4.NB_COLONNES; j++) {
                 this.grille[i][j] = Pion.CASE_VIDE;
-            }
+           }
         }
-
+        this.grille[0][3] = Pion.PION_J1;
+        this.grille[1][4] = Pion.PION_J1;
+        this.grille[2][5] = Pion.PION_J1;
+        this.grille[3][6] = Pion.PION_J1;
         this.joueur1 = new Joueur(joueur1, Pion.PION_J1);
 		this.joueur2 = new Joueur(joueur2, Pion.PION_J2);
 		this.joueurCourant = this.joueur1;
@@ -106,14 +109,46 @@ public class Puissance4 {
 	
 	/** Victoire en diagonale.*/
 	private boolean estVictoireEnDiagonale() {
-		for (int j=0; j<NB_LIGNES-1; j++) {
-			int casesConsecutives=0;
-			for (int i=0; i<NB_LIGNES-j; i++) {
-				if (grille[i+j][j]) {
-					
+
+		for (int j = 0; j < NB_LIGNES; j++) {
+			int casesConsecutives = 0;
+			for (int i = 0; i < NB_LIGNES-j; i++) {
+				casesConsecutives = (this.grille[j+i][i] == joueurCourant.pion) ? casesConsecutives + 1 : 0;
+				if (casesConsecutives==4) {
+					return true;
 				}
 			}
-				
+		}
+		
+		for (int j = 0; j < NB_LIGNES; j++) {
+			int casesConsecutives = 0;
+			for (int i = 0; i < NB_LIGNES-j; i++) {
+				//this.grille[i][i+j+1] = joueur2.pion;
+				casesConsecutives = (this.grille[i][i+j+1] == joueurCourant.pion) ? casesConsecutives + 1 : 0;
+				if (casesConsecutives==4) {
+					return true;
+				}
+			}
+		}
+		
+		for (int j = 0; j < NB_LIGNES; j++) {
+			int casesConsecutives = 0;
+			for (int i = 0; i < NB_LIGNES-j; i++) {
+				casesConsecutives = (this.grille[(NB_LIGNES - 1) - (i)][i+j] == joueurCourant.pion) ? casesConsecutives + 1 : 0;
+				if (casesConsecutives == 4) {
+					return true;
+				}
+			}
+		}
+		
+		for (int j = 0; j < NB_LIGNES; j++) {
+			int casesConsecutives = 0;
+			for (int i = 0; i < NB_LIGNES-j; i++) {
+				casesConsecutives = (this.grille[(NB_LIGNES - 1) - (i) - j][i] == joueurCourant.pion) ? casesConsecutives + 1 : 0;
+				if (casesConsecutives == 4) {
+					return true;
+				}
+			}
 		}
 		
 		return false;
@@ -129,7 +164,7 @@ public class Puissance4 {
             	int ligneUtilisee = this.insérerPion(colonneChoisie - 1); 
                 if (ligneUtilisee != -1) {
                 	System.out.println(ligneUtilisee);
-                    if (estVictoireEnColonne(colonneChoisie - 1) || estVictoireEnLigne(ligneUtilisee) ) {
+                    if (estVictoireEnColonne(colonneChoisie - 1) || estVictoireEnLigne(ligneUtilisee) || estVictoireEnDiagonale() ) {
                     	System.out.println("VICTOIRE");
                     }
                 	// TODO Vérification de victoire : nécessitera certainement (pour être plus propre) de passer la grille dans une classe dédiée.
