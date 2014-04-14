@@ -108,7 +108,12 @@ public class Puissance4 {
 	private boolean estVictoireEnDiagonale() {
 		for (int j=0; j<NB_LIGNES-1; j++) {
 			int casesConsecutives=0;
-			for (int i=0; i)
+			for (int i=0; i<NB_LIGNES-j; i++) {
+				if (grille[i+j][j]) {
+					
+				}
+			}
+				
 		}
 		
 		return false;
