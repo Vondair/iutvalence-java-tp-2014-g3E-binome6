@@ -1,35 +1,35 @@
 package fr.iutval.puissance4.tpjava;
 
 /**
- * Enumération définissant le type pion.
+ * Enumération définissant le type m_pion.
  *
  * @author Antoine C, Marine C.
  * @version 1.0.0
  */
+@SuppressWarnings("HardCodedStringLiteral")
 public enum Pion {
     CASE_VIDE(" ", 0),
     PION_J1("O", 1),
     PION_J2("X", 2);
 
     /** Représentation. */
-    private final String representation;
-    
+    private final String m_representation;
     /** Valeur. */
-    private final int    valeurDuPion;
+    private final int m_valeur;
 
-    Pion(String repr, int pion) {
-        this.representation = repr;
-        this.valeurDuPion = pion;
+    Pion(final String repr, final int pion) {
+        m_representation = repr;
+        m_valeur = pion;
     }
 
-    /** Méthode retournant la valeur du pion. */
+    /** Valeur du pion. */
     public int valeur() {
-        return this.valeurDuPion;
+        return m_valeur;
     }
 
-    /** Affichage de la représentation de la grille. */
+    /** Représentation du pion. */
     @Override
     public String toString() {
-        return representation;
+        return m_representation;
     }
 }

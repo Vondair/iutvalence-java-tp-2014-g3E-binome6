@@ -2,14 +2,14 @@ package fr.iutval.puissance4.tpjava;
 
 /**
  * "Launcher" du jeu.
- * 
- * @author Antoine C, Marine C.
- * @version 1.0.0
+ *
+
+ * @version 1.0.1
  */
-public class Application {
-	/** Méthode principale. */
-	public static void main(String[] args) {
-		Puissance4 P4 = new Puissance4("Tom", "Jerry");
-		P4.jouer();
-	}
+public final class Application {
+    /** Méthode principale. */
+    public static void main(final String... args) {
+        final Puissance4 partie = new Puissance4("Tom", "Jerry");
+        partie.jouer();
+    }
 }
