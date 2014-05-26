@@ -8,17 +8,18 @@ import javax.swing.JButton;
 public class Bouton extends JButton implements ActionListener{
 
 	private int numColonne;
-	private MettreAJourGrilleIHM ihm;
-	public Bouton(String text, int colonne, MettreAJourGrilleIHM ihm) {
+		
+	private Controleur controleur;
+	
+	public Bouton(String text, int colonne, Controleur controleur) {
 		super(text);
 		this.numColonne = colonne;
-		this.ihm = ihm;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// XXX Placer le pion
-		ihm.placerPion(numColonne, ligne);
+		this.controleur = controleur;
+		this.addActionListener(this);
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		this.controleur.insererPion(this.numColonne);
+	}
 }

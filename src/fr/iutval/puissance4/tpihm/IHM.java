@@ -9,18 +9,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-import fr.iutval.puissance4.tpjava.Grille;
-import fr.iutval.puissance4.tpjava.Puissance4;
+import fr.iutval.puissance4.tpjava.Pion;
 
 
 public class IHM implements Runnable, MettreAJourGrilleIHM {
 
-	public InteragirGrilleReelle jeu;
+	private Controleur controleur;
 	
-	public IHM (InteragirGrilleReelle partie) {
-		Grille grille = new Grille();
+	private JButton[][] boutons;
+	
+	public IHM(Controleur controleur) {
+		this.controleur = controleur;
 	}
-
+	
 	@Override
 	public void run() {
 		JFrame frame = new JFrame();
@@ -31,31 +32,38 @@ public class IHM implements Runnable, MettreAJourGrilleIHM {
 
 		JPanel grille = new JPanel();
 		grille.setLayout(new GridLayout(6,7));
-		for (int i = 0; i < 6*7; i++) {
-			JButton bouton = new JButton();
-			bouton.setEnabled(false);
-			bouton.setBackground(Color.MAGENTA);
-			grille.add(bouton);
+
+		this.boutons = new JButton[7][7];
+		
+		for (int i = 1; i < 7; i++) {
+			for (int j = 0; j < 7; j++) {
+				this.boutons[i][j] = new JButton();
+				this.boutons[i][j].setEnabled(false);
+				this.boutons[i][j].setBackground(Color.WHITE);
+				grille.add(this.boutons[i][j]);
+			}
 		}
 		frame.getContentPane().add(grille,BorderLayout.CENTER);
 		
 		JPanel boutons = new JPanel();
 		boutons.setLayout(new GridLayout(1,7));
-		boutons.add(new Bouton("↓",0,this,jeu));
-		boutons.add(new JButton("↓"));
-		boutons.add(new JButton("↓"));
-		boutons.add(new JButton("↓"));
-		boutons.add(new JButton("↓"));
-		boutons.add(new JButton("↓"));
-		boutons.add(new JButton("↓"));
+		
+		for (int j = 0; j < 7; j++) {
+			this.boutons[0][j] = new Bouton("↓", j, this.controleur);
+			boutons.add(this.boutons[0][j]);
+		}
+		
 		frame.getContentPane().add(boutons,BorderLayout.NORTH);
 		
 		frame.setVisible(true);
 	}
 
 	@Override
-	public void placerPion(int colonne, int ligne) {
-		// XXX
+	public void placerPion(int colonne, int ligne, Pion pion) {
+		this.boutons[ligne][colonne].setBackground(pion.color());
+		if ((this.controleur.estVictoire() == Pion.PION_J1) || (this.controleur.estVictoire() == Pion.PION_J2)) {
+			System.out.println("Partie Terminée");
+		}
 	}
 }
 

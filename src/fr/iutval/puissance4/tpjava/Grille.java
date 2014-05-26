@@ -136,7 +136,7 @@ public final class Grille implements InteragirGrilleReelle {
 	}
 
 	/** Victoire */
-	public boolean estVictoire(final Pion pion) {
+	public Boolean estVictoire(final Pion pion) {
 		for (int i = 0; i < NB_COLONNES; i++) {
 			if (estVictoireEnColonne(i, pion))
 				return true;
