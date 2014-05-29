@@ -13,4 +13,8 @@ public interface InteragirGrilleReelle {
 
 	/** Victoire */
 	public Boolean estVictoire(Pion pion);
+
+	/** Reinitialisation de la grille*/
+	public void reinitialiserGrille();
+
 }

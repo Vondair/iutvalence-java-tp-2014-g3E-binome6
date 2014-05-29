@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
@@ -17,6 +18,8 @@ public class IHM implements Runnable, MettreAJourGrilleIHM {
 	private Controleur controleur;
 	
 	private JButton[][] boutons;
+
+	private JFrame frame;
 	
 	public IHM(Controleur controleur) {
 		this.controleur = controleur;
@@ -24,11 +27,11 @@ public class IHM implements Runnable, MettreAJourGrilleIHM {
 	
 	@Override
 	public void run() {
-		JFrame frame = new JFrame();
-		frame.setTitle("Puissance4");
-		frame.setSize(600, 700);
-		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout());
+		this.frame = new JFrame();
+		this.frame.setTitle("Puissance4");
+		this.frame.setSize(600, 700);
+		this.frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		this.frame.getContentPane().setLayout(new BorderLayout());
 
 		JPanel grille = new JPanel();
 		grille.setLayout(new GridLayout(6,7));
@@ -62,10 +65,34 @@ public class IHM implements Runnable, MettreAJourGrilleIHM {
 	public void placerPion(int colonne, int ligne, Pion pion) {
 		this.boutons[ligne][colonne].setBackground(pion.color());
 		if ((this.controleur.estVictoire() == Pion.PION_J1) || (this.controleur.estVictoire() == Pion.PION_J2)) {
-			System.out.println("Partie Terminée");
+			String resultat = null;
+			if (this.controleur.estVictoire() == Pion.PION_J1)
+				resultat= "Joueur 1 ";
+			else
+				if (this.controleur.estVictoire() == Pion.PION_J2)
+					resultat = "Joueur 2 ";
+			else
+				resultat = "Aucun des deux joueurs n'";
+		
+		String possiblites[] = {"Nouvelle Partie", "Quitter le Jeu"};
+		int options = JOptionPane.showOptionDialog(this.frame, resultat + "a gagné la partie !", "Partie terminée", 0, JOptionPane.INFORMATION_MESSAGE, null, possiblites, possiblites[0]);
+		if (options == 0)
+			this.controleur.recommencerPartie();
+		else
+			System.exit(0);
 		}
 	}
+
+	public void remettreGrilleAZero() {
+		for (int i=0; i<7; i++)
+			for (int j=0; j<6; j++)
+				this.boutons[i][j].setBackground(Color.WHITE);
+	}
+
+
 }
+
+
 
 
 

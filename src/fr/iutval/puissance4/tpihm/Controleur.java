@@ -1,5 +1,9 @@
 package fr.iutval.puissance4.tpihm;
 
+import java.awt.Color;
+import java.util.Arrays;
+
+import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
 import fr.iutval.puissance4.tpjava.Grille;
@@ -12,6 +16,8 @@ public class Controleur {
 	private InteragirGrilleReelle grille;
 
 	private Pion pionCourant;
+
+	private JButton[][] boutons;
 
 	public static void main(final String... args) {
 
@@ -54,4 +60,10 @@ public class Controleur {
 		return null;
 	}
 
+	/** Recommencer une partie */
+	public void recommencerPartie(){
+		this.ihm.remettreGrilleAZero();
+		this.grille.reinitialiserGrille();
+	}
+	
 }

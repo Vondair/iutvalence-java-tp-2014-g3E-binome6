@@ -17,6 +17,8 @@ public final class Grille implements InteragirGrilleReelle {
 	public static final int NB_COLONNES = 7;
 	/** Grille de jeu. */
 	private final Pion[][] m_grille;
+	private Pion m_joueurCourant;
+	private Pion m_joueur1;
 
 	/** Constructeur initialisant une grille vide. */
 	public Grille() {
@@ -147,4 +149,11 @@ public final class Grille implements InteragirGrilleReelle {
 		}
 		return estVictoireEnDiagonale(pion);
 	}
-}
+
+	/** Reinitialisation de la grille*/
+	public void reinitialiserGrille() {
+		for (int i = 0; i < NB_LIGNES; i++) {
+			Arrays.fill(m_grille[i], Pion.CASE_VIDE);
+		}
+	}
+}	
